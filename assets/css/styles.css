@@ -577,6 +577,7 @@ svg.ic { flex: none; display: block; }
 .side-nav .danger { color: var(--brand-dark); }
 .side-nav .menu { left: 0; right: auto; }
 .acc-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.m-logout { display: none; }
 .pad-card { padding: 18px 20px; }
 .card-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .profile { display: flex; align-items: center; gap: 16px; }
@@ -666,7 +667,7 @@ svg.ic { flex: none; display: block; }
   .hdr.no-cart .addr-btn { display: none; }
   /* bottom tab bar */
   .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 58; display: flex; background: rgba(255,255,255,.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--border); padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); }
-  .tabbar a, .tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px; font-size: 11px; font-weight: 600; color: var(--muted); border-radius: 12px; }
+  .tabbar a, .tabbar button { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px; font-size: 11px; font-weight: 600; color: var(--muted); border-radius: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tabbar .is-here { color: var(--brand); }
   .tb-ic { position: relative; }
   .tb-ic .badge { top: -7px; right: -12px; }
@@ -746,6 +747,7 @@ svg.ic { flex: none; display: block; }
   /* account / info */
   .profile { flex-wrap: wrap; }
   .list-row .tag { display: none; }
+  .m-logout { display: inline-flex; }
   .ftr-grid { grid-template-columns: 1fr; gap: 22px; }
   .done-actions, .nf-actions { flex-direction: column; }
 }
@@ -817,13 +819,14 @@ svg.ic { flex: none; display: block; }
 .ticket.is-off { opacity: .6; }
 .tim { position: relative; min-height: 132px; background: var(--beige); }
 .tim .cover, .tim .ph { position: absolute; inset: 0; }
-.tb { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-left: 2px dashed var(--border-strong); min-width: 0; }
-.tb strong { font-size: 16px; font-weight: 600; line-height: 1.25; }
-.tt { font-size: 13px; color: var(--muted); }
-.cd { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.tb { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 16px; border-left: 2px dashed var(--border-strong); min-width: 0; }
+.tb strong { font-size: 16px; font-weight: 600; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+.tt { font-size: 13px; color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.cd { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; align-self: flex-start; max-width: 100%; font-size: 12.5px; font-weight: 700; line-height: 1.35; color: var(--muted); white-space: normal; }
 .cd.live { color: var(--brand-dark); }
-.row2 { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; }
-.ticket .code { background: var(--yellow); color: #3D2A00; font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: 6px; letter-spacing: .3px; }
+.cd .ic { flex: none; }
+.row2 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.ticket .code { background: var(--yellow); color: #3D2A00; font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: 6px; letter-spacing: .3px; white-space: nowrap; flex: none; }
 .ticket::before, .ticket::after { content: ""; position: absolute; left: 111px; z-index: 2; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); }
 .ticket::before { top: -10px; } .ticket::after { bottom: -10px; }
 .trend { padding: 4px 18px; margin: 0; list-style: none; }
@@ -920,6 +923,11 @@ svg.ic { flex: none; display: block; }
   .deals { grid-template-columns: minmax(0, 1fr); }
   .ticket { grid-template-columns: 96px minmax(0, 1fr); }
   .ticket::before, .ticket::after { left: 87px; }
+  .tb { padding: 12px 14px; gap: 6px; }
+  .tb strong { font-size: 15px; }
+  .cd { font-size: 12px; }
+  .row2 { margin-top: 4px; }
+  .row2 .btn { flex: none; }
   .trend { padding: 2px 14px; }
   .ktab-seg { width: 100%; }
   .ktab-seg > button { font-size: 13px; padding: 4px 6px; }

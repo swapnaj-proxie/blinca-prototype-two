@@ -167,12 +167,14 @@ window.Blinca = (function () {
   }
   function mobileChrome() {
     var p = B.page;
+    var u = S.user();
     var tab = function (id, href, icon, label, act) {
-      return (act ? '<button data-action="' + act + '"' : '<a href="' + href + '"') + ' class="' + (p === id ? 'is-here' : '') + '"><span class="tb-ic">' + B.icon(icon, 22) + (id === 'cart' ? badge() : '') + '</span><span>' + label + '</span>' + (act ? '</button>' : '</a>');
+      return (act ? '<button data-action="' + act + '" aria-label="' + B.esc(label) + '"' : '<a href="' + href + '"') + ' class="' + (p === id ? 'is-here' : '') + '"><span class="tb-ic">' + B.icon(icon, 22) + (id === 'cart' ? badge() : '') + '</span><span>' + label + '</span>' + (act ? '</button>' : '</a>');
     };
-    return '<nav class="tabbar" aria-label="' + t('nav.main') + '">' +
-      tab('home', 'index.html', 'home', t('nav.home')) + tab('search', '', 'search', t('nav.search'), 'open-search') +
-      tab('orders', 'info.html?page=account&tab=orders', 'receipt', t('acc.orders')) + tab('account', 'info.html?page=account', 'user', t('header.account')) + '</nav>';
+    var tabs = tab('home', 'index.html', 'home', t('nav.home')) + tab('search', '', 'search', t('nav.search'), 'open-search') +
+      tab('orders', 'info.html?page=account&tab=orders', 'receipt', t('acc.orders')) + tab('account', 'info.html?page=account', 'user', t('header.account'));
+    if (u) tabs += tab('logout', '', 'logout', t('acct.logout'), 'logout');
+    return '<nav class="tabbar" aria-label="' + t('nav.main') + '">' + tabs + '</nav>';
   }
   B.mountHeader = function (opts) {
     headerOpts = opts || headerOpts;

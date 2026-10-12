@@ -133,7 +133,8 @@
     var body = tab === 'orders' ? recent : tab === 'favourites' ? favCard() : tab === 'addresses' ? addressCard() :
       profile + recent + addressCard() +
       '<section class="card pad-card"><div class="card-h"><h2 class="h3">' + t('acc.demo') + '</h2></div><p class="muted">' + t('acc.demoText') + '</p><button class="btn btn-secondary btn-sm mt-12" data-reset>' + t('acc.reset') + '</button></section>';
-    return '<h1 class="h1">' + t('acc.title') + '</h1><div class="acc">' + nav + '<div class="acc-main">' + body + '</div></div>';
+    var logoutBtn = '<button class="btn btn-secondary btn-block m-logout" data-action="logout">' + B.icon('logout', 16) + t('acct.logout') + '</button>';
+    return '<h1 class="h1">' + t('acc.title') + '</h1><div class="acc">' + nav + '<div class="acc-main">' + body + logoutBtn + '</div></div>';
   }
 
   function render() {
