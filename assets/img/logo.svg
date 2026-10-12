@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="blinca">
+  <g fill="#E23744">
+    <rect x="2" y="15" width="12" height="3.4" rx="1.7"/>
+    <rect x="0" y="22" width="17" height="3.4" rx="1.7"/>
+    <rect x="4" y="29" width="13" height="3.4" rx="1.7"/>
+    <rect x="1" y="36" width="15" height="3.4" rx="1.7"/>
+    <path d="M20.5 9.2c0-1.5 1-2.7 2.4-3.2l4.6-1.5V22a14.6 14.6 0 1 1-7 12.4z"/>
+    <circle cx="34.6" cy="33.6" r="14.4"/>
+  </g>
+  <g fill="#ffffff">
+    <rect x="30.2" y="24" width="3.6" height="14" rx="1.6"/>
+    <circle cx="36.2" cy="34" r="4.6"/>
+  </g>
+  <circle cx="36.2" cy="34" r="1.9" fill="#E23744"/>
+  <text x="54" y="40" fill="#E23744" font-family="'Google Sans','Product Sans','Poppins','Segoe UI',Roboto,Arial,sans-serif" font-size="33" font-weight="500" letter-spacing="-0.4">blinca</text>
+</svg>
