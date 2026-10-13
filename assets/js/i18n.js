@@ -132,7 +132,18 @@
     'h2.notify': "Notify me",
     'h2.browseMenu': "Browse menu",
     'h2.notified': "We’ll remind you when {name} opens at {time}",
-    'promo.ended': "This code has ended for today."
+    'promo.ended': "This code has ended for today.",
+    'all.subtitle': "{open} open now · {later} open later",
+    'all.openNow': "Open now · {n}",
+    'all.openingLater': "Opening later · {n}",
+    'all.openPill': "Open",
+    'all.showAll': "Show all {n}",
+    'all.shownOf': "{x} of {y} shown",
+    'all.gridView': "Grid view",
+    'all.listView': "List view",
+    'all.viewLabel': "Change view",
+    'all.backTop': "Back to top",
+    'all.noneOpen': "Nothing open right now – see the places opening later below."
   };
   var sv = {
     'title.home': 'Hem – Blinca', 'title.checkout': 'Kassa – Blinca',
@@ -265,7 +276,18 @@
     'h2.notify': "Påminn mig",
     'h2.browseMenu': "Visa meny",
     'h2.notified': "Vi påminner dig när {name} öppnar kl. {time}",
-    'promo.ended': "Koden har gått ut för idag."
+    'promo.ended': "Koden har gått ut för idag.",
+    'all.subtitle': "{open} öppet nu · {later} öppnar senare",
+    'all.openNow': "Öppet nu · {n}",
+    'all.openingLater': "Öppnar senare · {n}",
+    'all.openPill': "Öppet",
+    'all.showAll': "Visa alla {n}",
+    'all.shownOf': "{x} av {y} visas",
+    'all.gridView': "Rutnätsvy",
+    'all.listView': "Listvy",
+    'all.viewLabel': "Byt vy",
+    'all.backTop': "Tillbaka till toppen",
+    'all.noneOpen': "Inget är öppet just nu – se ställena som öppnar senare nedan."
   };
   window.I18N = { en: en, sv: sv };
   window.t = function (key, vars) {
