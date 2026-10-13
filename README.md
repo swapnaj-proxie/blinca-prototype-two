@@ -16,7 +16,7 @@ No build step and no backend needed.
 | `restaurant.html?slug=sushi-sakura` | Closed restaurant state (other slugs: grona-greken, pizzeria-vesuvio, bangkok-street, burger-bror, kebab-huset) |
 | `checkout.html` | 5 numbered steps, saved/new addresses, schedule time, phone with country code, promo codes, place order |
 | `info.html?page=account` | Account: profile, orders, favourites, addresses (`&tab=orders` etc.) |
-| `info.html?page=help` | Help centre (also: about, how, contact, terms, privacy, partner, courier, careers) |
+| `info.html?page=help` | Help centre (also: about, how, contact, terms, privacy) |
 | `login.html` | Log in / create account |
 | `404.html` | Page not found |
 

@@ -25,16 +25,9 @@ window.Blinca = (function () {
   B.priceLevel = function (n) { return new Array(n + 1).join('kr ').trim(); };
   B.deliverable = function (a) { return !!a && (a.deliverable === true || (a.deliverable == null && /stockholm|solna|sundbyberg|nacka/.test(B.norm(a.city)))); };
 
-  /* ---------- logo (inline so it uses the page font) ---------- */
+  /* ---------- logo (real brand artwork in assets/img) ---------- */
   B.logo = function (white) {
-    var c = white ? '#ffffff' : '#E23744', k = white ? '#231C1C' : '#ffffff';
-    return '<svg class="logo-svg" viewBox="0 0 160 48" role="img" aria-label="blinca"><g fill="' + c + '">' +
-      '<rect x="2" y="15" width="12" height="3.4" rx="1.7"/><rect x="0" y="22" width="17" height="3.4" rx="1.7"/>' +
-      '<rect x="4" y="29" width="13" height="3.4" rx="1.7"/><rect x="1" y="36" width="15" height="3.4" rx="1.7"/>' +
-      '<path d="M20.5 9.2c0-1.5 1-2.7 2.4-3.2l4.6-1.5V22a14.6 14.6 0 1 1-7 12.4z"/><circle cx="34.6" cy="33.6" r="14.4"/></g>' +
-      '<g fill="' + k + '"><rect x="30.2" y="24" width="3.6" height="14" rx="1.6"/><circle cx="36.2" cy="34" r="4.6"/></g>' +
-      '<circle cx="36.2" cy="34" r="1.9" fill="' + c + '"/>' +
-      '<text x="54" y="40" fill="' + c + '" font-family="\'Google Sans\',system-ui,sans-serif" font-size="33" font-weight="600" letter-spacing="-0.4">blinca</text></svg>';
+    return '<img class="logo-svg" src="assets/img/' + (white ? 'logo-white.svg' : 'logo.svg') + '" alt="blinca" width="160" height="50">';
   };
 
   /* ---------- icons ---------- */
@@ -244,8 +237,7 @@ window.Blinca = (function () {
       }
       el.className = 'ftr';
       el.innerHTML = '<div class="wrap"><div class="ftr-grid"><div><a class="ftr-logo" href="index.html">' + B.logo(true) + '</a><p>' + t('footer.tagline') + '</p></div>' +
-        '<div><h4>Blinca</h4><a href="info.html?page=about">' + t('nav.about') + '</a><a href="info.html?page=how">' + t('nav.how') + '</a><a href="info.html?page=careers">' + t('footer.careers') + '</a></div>' +
-        '<div><h4>' + t('footer.work') + '</h4><a href="info.html?page=partner">' + t('footer.addRestaurant') + '</a><a href="info.html?page=courier">' + t('footer.courier') + '</a></div>' +
+        '<div><h4>Blinca</h4><a href="info.html?page=about">' + t('nav.about') + '</a><a href="info.html?page=how">' + t('nav.how') + '</a></div>' +
         '<div><h4>' + t('footer.help') + '</h4><a href="info.html?page=help">' + t('footer.helpCentre') + '</a><a href="info.html?page=contact">' + t('nav.contact') + '</a><a href="info.html?page=terms">' + t('footer.terms') + '</a><a href="info.html?page=privacy">' + t('footer.privacy') + '</a></div></div>' +
         '<div class="ftr-bottom"><span>© ' + new Date().getFullYear() + ' Blinca AB</span><span><button data-action="set-lang" data-lang="sv">Svenska</button> / <button data-action="set-lang" data-lang="en">English</button></span></div></div>';
     };
@@ -321,6 +313,15 @@ window.Blinca = (function () {
     var done = function () { B.toast(msg); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done); else done();
   };
+  function flashCodeBtn(el) {
+    if (!el || !el.classList || !el.classList.contains('code-btn')) return;
+    var ic = el.querySelector('.code-ic');
+    if (!ic) return;
+    el.classList.add('copied');
+    ic.innerHTML = B.icon('check', 16);
+    clearTimeout(el._copyT);
+    el._copyT = setTimeout(function () { el.classList.remove('copied'); ic.innerHTML = B.icon('copy', 16); }, 2000);
+  }
 
   /* ================================================================
      ADDRESS PICKER + NEW ADDRESS FORM
@@ -588,7 +589,7 @@ window.Blinca = (function () {
       case 'line-dec': S.changeQty(key, -1); break;
       case 'line-remove': S.removeLine(key); break;
       case 'promo-remove': S.setPromo(null); break;
-      case 'copy-code': B.copy(el.getAttribute('data-code'), t('offer.copied', { code: el.getAttribute('data-code') })); break;
+      case 'copy-code': B.copy(el.getAttribute('data-code'), t('offer.copied', { code: el.getAttribute('data-code') })); flashCodeBtn(el); break;
       case 'toggle-fav': {
         e.preventDefault(); e.stopPropagation();
         var on = S.toggleFav(slug);

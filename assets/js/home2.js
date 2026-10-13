@@ -116,9 +116,9 @@
     return '<div><div class="sec-head"><h2 class="h2">' + t('h2.deals') + '</h2><button class="btn-link" data-action="open-offers">' + t('home.seeAll', { n: D.offers.length }) + '</button></div><div class="deals">' +
       D.offers.slice().sort(function (a, b) { return (dealStatus(b).live ? 1 : 0) - (dealStatus(a).live ? 1 : 0); }).slice(0, 4).map(function (o) {
         var s = dealStatus(o);
-        return '<div class="ticket' + (s.off ? ' is-off' : '') + '"><div class="tim">' + B.img(o.image) + '</div><div class="tb"><span class="cd' + (s.live ? ' live' : '') + '"' + (o.rule.untilHour != null ? ' data-countdown="' + o.code + '"' : '') + '>' + B.icon('clock', 14) + s.txt + '</span>' +
+        return '<div class="ticket' + (s.off ? ' is-off' : '') + '"><div class="tim">' + B.img(o.image) + '</div><div class="tb"><span class="cd' + (s.live ? ' deal-urgent' : '') + '"' + (o.rule.untilHour != null ? ' data-countdown="' + o.code + '"' : '') + '>' + B.icon('clock', 14) + s.txt + '</span>' +
           '<strong>' + B.esc(B.L(o.title)) + '</strong><span class="tt">' + B.esc(B.L(o.text)) + '</span>' +
-          '<span class="row2"><span class="code">' + o.code + '</span><button class="btn btn-secondary btn-sm" data-action="copy-code" data-code="' + o.code + '"' + (s.off ? ' disabled' : '') + '>' + B.icon('copy', 15) + t('rest.copyCode') + '</button></span></div></div>';
+          '<button class="code-btn" data-action="copy-code" data-code="' + o.code + '" aria-label="' + t('rest.copyCode') + ' ' + o.code + '"' + (s.off ? ' disabled' : '') + '><span class="code-txt">' + o.code + '</span><span class="code-ic">' + B.icon('copy', 16) + '</span></button></div></div>';
       }).join('') + '</div></div>';
   }
   function trendingHTML() {
@@ -310,7 +310,7 @@
       var o = D.offers.filter(function (x) { return x.code === el.getAttribute('data-countdown'); })[0];
       var s = dealStatus(o);
       el.innerHTML = B.icon('clock', 14) + s.txt;
-      el.classList.toggle('live', !!s.live);
+      el.classList.toggle('deal-urgent', !!s.live);
     });
   }
   clockTimer = setInterval(tick, 30000);

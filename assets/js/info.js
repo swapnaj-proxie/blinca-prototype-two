@@ -6,6 +6,7 @@
   var P = B.params();
   var page = P.get('page') || 'about';
   var tab = P.get('tab') || 'profile';
+  if (page === 'careers' || page === 'partner' || page === 'courier') { window.location.replace('404.html'); return; }
   if (page === 'account') document.body.setAttribute('data-page', tab === 'orders' ? 'orders' : 'account');
   B.page = document.body.getAttribute('data-page');
 
@@ -34,18 +35,6 @@
         ['Lokal mat, snabbt', 'Blinca kopplar ihop dig med de bästa fristående köken i din stad – från pizzerian på hörnet till sushibaren alla pratar om.'],
         ['Schyst mot restauranger', 'Vi håller avgifterna låga och betalar restaurangerna varje vecka, så att dina favoritställen kan fortsätta göra det de är bäst på.'],
         ['Skapat i Stockholm', 'Blinca startade i Stockholm och levererar nu även i Göteborg och Malmö.']] }
-    },
-    careers: {
-      en: { title: 'Careers', body: [['Work with us', 'We are a small team building food delivery that is fair for everyone. Send your CV to jobs@blinca.se.']] },
-      sv: { title: 'Jobba hos oss', body: [['Jobba med oss', 'Vi är ett litet team som bygger matleveranser som är schysta för alla. Skicka ditt CV till jobs@blinca.se.']] }
-    },
-    partner: {
-      en: { title: 'Add your restaurant', body: [['Reach more guests', 'List your menu on Blinca in a day. No setup fee, weekly payouts and a simple dashboard for orders and opening hours.'], ['Get in touch', 'Email partners@blinca.se and we will call you within one working day.']] },
-      sv: { title: 'Lägg till din restaurang', body: [['Nå fler gäster', 'Lägg upp din meny på Blinca på en dag. Ingen startavgift, utbetalning varje vecka och en enkel översikt för beställningar och öppettider.'], ['Hör av dig', 'Mejla partners@blinca.se så ringer vi dig inom en arbetsdag.']] }
-    },
-    courier: {
-      en: { title: 'Become a courier', body: [['Ride with Blinca', 'Choose your own hours, ride by bike, scooter or car, and get paid every week. Email couriers@blinca.se to get started.']] },
-      sv: { title: 'Bli budbärare', body: [['Kör med Blinca', 'Välj dina egna tider, kör cykel, moped eller bil och få betalt varje vecka. Mejla couriers@blinca.se för att komma igång.']] }
     },
     terms: {
       en: { title: 'Terms', body: [['Orders', 'An order is binding once the restaurant has accepted it. Prices include VAT.'], ['Delivery', 'Delivery times are estimates. If your order is late or wrong, contact us and we will make it right.'], ['Refunds', 'Refunds are paid back to the original payment method within 5 working days.']] },
@@ -128,7 +117,7 @@
     }).join('') + '<a href="info.html?page=help">' + B.icon('help', 18) + t('footer.helpCentre') + '</a>' +
       '<div class="pop-wrap"><button data-action="toggle-menu" aria-haspopup="true" aria-expanded="false">' + B.icon('globe', 18) + t('header.language') + ' · ' + S.lang().toUpperCase() + '</button><div class="menu" hidden><button data-action="set-lang" data-lang="en">English</button><button data-action="set-lang" data-lang="sv">Svenska</button></div></div>' +
       '<div class="menu-sep"></div><button class="danger" data-action="logout">' + B.icon('logout', 18) + t('acct.logout') + '</button></nav>';
-    var profile = '<section class="card pad-card profile"><span class="avatar pink"><span>' + B.esc(initials(u.name)) + '</span></span><div class="grow"><h2 class="h3">' + B.esc(u.name) + '</h2><p class="muted">' + B.esc(u.email) + (u.phone ? ' · +46 ' + B.esc(u.phone) : '') + '</p></div><button class="btn btn-secondary btn-sm" data-edit-profile>' + B.icon('edit', 15) + t('acc.edit') + '</button></section>';
+    var profile = '<section class="card pad-card profile"><span class="avatar pink"><span>' + B.esc(initials(u.name)) + '</span></span><div class="grow"><h2 class="h3">' + B.esc(u.name) + '</h2><p class="muted">' + B.esc(u.email) + '</p>' + (u.phone ? '<p class="muted">+46 ' + B.esc(u.phone) + '</p>' : '') + '</div><button class="btn btn-secondary btn-sm" data-edit-profile>' + B.icon('edit', 15) + t('acc.edit') + '</button></section>';
     var recent = '<section class="card pad-card"><div class="card-h"><h2 class="h3">' + (tab === 'orders' ? t('acc.orders') : t('acc.recent')) + '</h2>' + (tab === 'orders' ? '' : '<a class="btn-link sm" href="info.html?page=account&tab=orders">' + t('acc.seeAll') + '</a>') + '</div><div class="list">' + orderRows(tab === 'orders' ? S.orders() : S.orders().slice(0, 3)) + '</div></section>';
     var body = tab === 'orders' ? recent : tab === 'favourites' ? favCard() : tab === 'addresses' ? addressCard() :
       profile + recent + addressCard() +
